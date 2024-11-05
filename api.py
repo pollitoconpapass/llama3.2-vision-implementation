@@ -1,7 +1,8 @@
+import io
 import torch 
 import uvicorn
 from PIL import Image
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 from transformers import (
     MllamaForConditionalGeneration,
     AutoProcessor,
@@ -24,8 +25,9 @@ processor = AutoProcessor.from_pretrained(model_id)
 
 # === ENDPOINT IMPLEMENTATION ===
 @app.post("/ask-llama-3-2-vision")
-def answer_image_question(prompt: str, image_file: UploadFile = File(...)):
-  image = Image.open(image_file)
+async def answer_image_question(prompt: str = Form(...), image_file: UploadFile = File(...)):
+  contents = await image_file.read()
+  image = Image.open(io.BytesIO(contents))
   prompt = f"<|image|><|begin_of_text|>{prompt}" # -> special prompt style
 
   inputs = processor(image, prompt, return_tensors="pt").to("cpu") # -> assigned to the cpu (change it in case you have GPU machine)
