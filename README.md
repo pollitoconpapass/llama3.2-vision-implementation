@@ -2,7 +2,7 @@
 
 Script to load and use LLAMA model for image analysis
 
-[!IMPORTANT]
+>[!IMPORTANT]
 > The time execution will depend on your machine components. (RAM, GPU, etc)
 
 # 🗂️ Pre-requirements
@@ -27,7 +27,5 @@ Script to load and use LLAMA model for image analysis
 
         python api.py
 
-[!NOTE]
+> [!NOTE]
 > You can download the Notebook and run it in a Colab environment. 
-
-
