@@ -7,7 +7,7 @@ COPY . .
 RUN pip install -r requirements.txt && \
     pip install --upgrade accelerate scipy transformers 
 
-ENV HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+ENV GROQ_API_KEY=${GROQ_API_KEY}
 
 EXPOSE 4040
 
